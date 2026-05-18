@@ -10,7 +10,7 @@
         "value": "JSON string — initial value loaded into the editor",
         "placeholder": "JSON string — shown when editor is empty"
       },
-      "tags": ["editor", "json", "form", "input", "data", "ace"],
+      "tags": ["editor", "json", "form", "input", "data", "ace", "syntax-highlight"],
       "usage": [
         {
           "label": "minimal",
