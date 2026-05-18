@@ -13,10 +13,16 @@ jobs:
       issues: write
 
     steps:
-      - name: Checkout PR head
+      - name: Checkout base repo (for scripts)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Checkout PR head into pr/
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -26,6 +32,7 @@ jobs:
       - name: Validate registry and component
         id: validate
         run: node .github/scripts/validate.js
+        working-directory: pr
 
       - name: Label PR — passed
         if: success()
