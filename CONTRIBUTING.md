@@ -4,10 +4,10 @@ Anyone can contribute a component to the muffin registry by opening a pull reque
 
 ## Component structure
 
-Each component lives in `ui/<component-name>/`:
+Each component lives in `components/<component-name>/`:
 
 ```
-ui/
+components/
   my-component/
     index.js          ← required — main component file
     helper.js         ← optional — any additional files the component needs
@@ -48,8 +48,8 @@ Add an entry for your component in `registry.json` under `components`:
     "my-component": {
       "domElName": "my-component",
       "description": "one line description of what it does",
-      "cdn": "https://cdn.jsdelivr.net/gh/FootLooseLabs/muffin-components/ui/my-component/index.js",
-      "import": "@muffin/components/ui/my-component/index.js",
+      "cdn": "https://cdn.jsdelivr.net/gh/FootLooseLabs/muffin-components/components/my-component/index.js",
+      "import": "@muffin/components/components/my-component/index.js",
       "attributes": {
         "text": "string — content to display"
       },
@@ -87,7 +87,7 @@ Add an entry for your component in `registry.json` under `components`:
 ## Submitting
 
 1. Fork this repo
-2. Add your component folder under `ui/`
+2. Add your component folder under `components/`
 3. Add your manifest entry to `registry.json`
 4. Open a pull request with a brief description of what the component does
 
