@@ -29,6 +29,36 @@
           "code": "<json-editor>\n  <repeat-schema key=\"items\">{\"name\": \"\", \"value\": \"\"}</repeat-schema>\n</json-editor>"
         }
       ]
+    },
+    "lucide-icon": {
+      "domElName": "lucide-icon",
+      "description": "Renders any Lucide icon as an inline SVG. Accepts kebab-case icon names (e.g. chevrons-right, share-2). Also exposes a static renderIcon() helper for use inside other components.",
+      "cdn": "https://cdn.jsdelivr.net/gh/FootLooseLabs/muffin-components/components/lucide-icon/index.js",
+      "import": "@muffin/components/components/lucide-icon/index.js",
+      "attributes": {
+        "icon": "Kebab-case Lucide icon name (e.g. \"chevrons-right\", \"share-2\") — required",
+        "size": "Icon size in pixels — default 16",
+        "class": "CSS class applied to the SVG element"
+      },
+      "tags": ["icon", "svg", "lucide", "utility", "display"],
+      "usage": [
+        {
+          "label": "minimal",
+          "code": "<lucide-icon></lucide-icon>"
+        },
+        {
+          "label": "named icon",
+          "code": "<lucide-icon icon=\"chevrons-right\"></lucide-icon>"
+        },
+        {
+          "label": "with size and class",
+          "code": "<lucide-icon icon=\"share-2\" size=\"24\" class=\"text-blue-500\"></lucide-icon>"
+        },
+        {
+          "label": "static helper inside another component",
+          "code": "LucideIcon.renderIcon('trash-2', 20, 'text-red-500')"
+        }
+      ]
     }
   }
 }
