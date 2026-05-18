@@ -55,11 +55,16 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const fs = require('fs');
+            let checklist = '';
+            try {
+              checklist = fs.readFileSync('/tmp/validation-summary.md', 'utf8');
+            } catch(e) {}
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `✅ **Auto-review passed.** All checks completed successfully. A maintainer will review and merge.`
+              body: `✅ **Auto-review passed.** A maintainer will review and merge.\n\n${checklist}`
             });
 
       - name: Comment — failed
@@ -68,6 +73,10 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            let checklist = '';
+            try {
+              checklist = fs.readFileSync('/tmp/validation-summary.md', 'utf8');
+            } catch(e) {}
             let errors = '';
             try {
               errors = fs.readFileSync('/tmp/validation-errors.txt', 'utf8');
@@ -76,5 +85,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `❌ **Auto-review failed.**\n\n${errors}\n\nPlease fix the issues above and push again.`
+              body: `❌ **Auto-review failed.**\n\n${checklist}\n\n**Errors**\n${errors}\n\nPlease fix the issues above and push again.`
             });
