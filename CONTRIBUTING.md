@@ -80,8 +80,8 @@ Add an entry for your component in `registry.json` under `components`:
 | `attributes` | no | HTML attributes the component reads |
 | `advertiseAs` | no | PostOffice interface name if component advertises one |
 | `lexicon` | no | messages the component accepts on its advertised interface |
-| `emits` | no | PostOffice messages the component dispatches outward (`:::` notation) |
-| `listens` | no | PostOffice interfaces the component subscribes to (`\|\|\|` notation) |
+| `emits` | no | PostOffice messages dispatched on public sockets — global or an advertised interface (`:::` notation) |
+| `listens` | no | PostOffice subscriptions on public sockets — global or another component's advertised interface (`\|\|\|` notation) |
 | `usage` | no | array of `{ label, code }` usage examples — first entry must be minimal working usage |
 
 ## Submitting
