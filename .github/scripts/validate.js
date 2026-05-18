@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const ERRORS = [];
 const REQUIRED_MANIFEST_FIELDS = ['domElName', 'description'];
@@ -12,6 +12,16 @@ const MALICIOUS_PATTERNS = [
 
 function error(msg) {
     ERRORS.push(`- ${msg}`);
+}
+
+function exit() {
+    if (ERRORS.length) {
+        fs.writeFileSync('/tmp/validation-errors.txt', ERRORS.join('\n'));
+        console.error('\nValidation failed:\n' + ERRORS.join('\n'));
+        process.exit(1);
+    }
+    console.log('Validation passed.');
+    process.exit(0);
 }
 
 // ── 1. registry.json is valid JSON ───────────────────────────────────────────
@@ -90,7 +100,7 @@ for (const [name, manifest] of Object.entries(registry.components)) {
     }
 }
 
-// ── 10. No components folder exists without a registry entry ─────────────────
+// ── 10. No orphan folders in components/ without a registry entry ─────────────
 
 if (fs.existsSync('components')) {
     const folders = fs.readdirSync('components');
@@ -99,17 +109,6 @@ if (fs.existsSync('components')) {
             error(`Folder "components/${folder}" exists but has no entry in registry.json`);
         }
     }
-}
-
-// ── Exit ─────────────────────────────────────────────────────────────────────
-
-function exit() {
-    if (ERRORS.length) {
-        fs.writeFileSync('/tmp/validation-errors.txt', ERRORS.join('\n'));
-        console.error('\nValidation failed:\n' + ERRORS.join('\n'));
-        process.exit(1);
-    }
-    process.exit(0);
 }
 
 exit();
