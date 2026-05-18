@@ -1,4 +1,34 @@
 {
   "version": "0.1.0",
-  "components": {}
+  "components": {
+    "json-editor": {
+      "domElName": "json-editor",
+      "description": "JSON editor component powered by Ace editor — supports placeholder, default value, repeat-schema for array data entry",
+      "cdn": "https://cdn.jsdelivr.net/gh/FootLooseLabs/muffin-components/components/json-editor/index.js",
+      "import": "@muffin/components/components/json-editor/index.js",
+      "attributes": {
+        "value": "JSON string — initial value loaded into the editor",
+        "placeholder": "JSON string — shown when editor is empty"
+      },
+      "tags": ["editor", "json", "form", "input", "data", "ace"],
+      "usage": [
+        {
+          "label": "minimal",
+          "code": "<json-editor></json-editor>"
+        },
+        {
+          "label": "with default value",
+          "code": "<json-editor value='{\"key\": \"value\"}'></json-editor>"
+        },
+        {
+          "label": "with placeholder",
+          "code": "<json-editor placeholder='{\"key\": \"value\"}'></json-editor>"
+        },
+        {
+          "label": "with inline repeat-schema",
+          "code": "<json-editor>\n  <repeat-schema key=\"items\">{\"name\": \"\", \"value\": \"\"}</repeat-schema>\n</json-editor>"
+        }
+      ]
+    }
+  }
 }
