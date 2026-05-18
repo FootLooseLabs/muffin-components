@@ -1,7 +1,7 @@
 name: Validate Component PR
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [main]
 
 jobs:
@@ -10,10 +10,13 @@ jobs:
     permissions:
       pull-requests: write
       contents: read
+      issues: write
 
     steps:
-      - name: Checkout
+      - name: Checkout PR head
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -23,8 +26,6 @@ jobs:
       - name: Validate registry and component
         id: validate
         run: node .github/scripts/validate.js
-        env:
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
 
       - name: Label PR — passed
         if: success()
