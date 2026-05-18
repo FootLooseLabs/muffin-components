@@ -53,6 +53,7 @@ Add an entry for your component in `registry.json` under `components`:
       "attributes": {
         "text": "string — content to display"
       },
+      "tags": ["example", "minimal"],
       "usage": [
         {
           "label": "minimal",
@@ -82,6 +83,7 @@ Add an entry for your component in `registry.json` under `components`:
 | `lexicon` | no | messages the component accepts on its advertised interface |
 | `emits` | no | PostOffice messages dispatched on public sockets — global or an advertised interface (`:::` notation) |
 | `listens` | no | PostOffice subscriptions on public sockets — global or another component's advertised interface (`\|\|\|` notation) |
+| `tags` | no | array of strings for search and categorisation — e.g. `["form", "input", "editor"]` |
 | `usage` | no | array of `{ label, code }` usage examples — first entry must be minimal working usage |
 
 ## Submitting
