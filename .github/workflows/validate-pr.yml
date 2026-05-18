@@ -31,7 +31,7 @@ jobs:
 
       - name: Validate registry and component
         id: validate
-        run: node .github/scripts/validate.js
+        run: node $GITHUB_WORKSPACE/.github/scripts/validate.js
         working-directory: pr
 
       - name: Label PR — passed
